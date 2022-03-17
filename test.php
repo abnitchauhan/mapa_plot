@@ -10,7 +10,11 @@ var timedate = <?php echo json_encode($timedate) ; ?>;
 timedate = timedate*1000;
 var stringdate = new Date(timedate);
 
-finalDate = stringdate.getDate()+'/'+ (stringdate.getMonth()+1)+ '/'+stringdate.getYear();
-console.log(finalDate);
+finalDate = stringdate.getDate()+'/'+ (stringdate.getMonth()+1) + '/' +stringdate.getFullYear();
+console.log('finalDate: ', finalDate);
+
+var  backtotimestamp = finalDate.getTime();
+console.log('Back To Timestamp: ', backtotimestamp);
+
 
 </script>
