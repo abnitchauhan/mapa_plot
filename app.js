@@ -6,89 +6,98 @@ $.post('data_process.php',
         
  
 // PREPARE CHART : CUMULATIVE CASES 
-        Highcharts.chart('cumulative_cases', { 
-            chart:{
-                zoomType: 'x',
-                panning: true,
-                panKey: 'shift',   
-            },
 
-            title: {   text: 'Cumulative Cases'    },
-        
-            subtitle: {text: ''},
-        
-            yAxis: {
-                title: {  text: 'Cases'  }
-            },
-        
-            xAxis: {
-                  type: 'datetime',  
-            },
-        
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-        
-            plotOptions: {
-                series:{
-                    marker: {
-                        enabled: false
-                    },
-                }
-            },
-        
-            series: [
-                // Prediction Lines
-                    {name: 'EP',
-                    data: cumul_data['ep']
-                    },
-                    {name: 'MP',
-                    data: cumul_data['mp']
-                    },
-                    {name: 'PP',
-                    data: cumul_data['pp']
-                    },
-                    {name: 'True',
-                    data: cumul_data['true']
-                    }, 
-                    {name : 'Prediction 1',
-                     data : cumul_data['pred']
-                    }, 
-                // Prediction Bands
-                    {
-                        name : 'EP Band',
-                        type : 'arearange',
-                        data : cumul_data['ep_band']
-                    },
-                    {
-                        name : 'MP Band',
-                        type : 'arearange',
-                        data : cumul_data['mp_band']
-                    },
-                    {
-                        name : 'PP Band',
-                        type : 'arearange',
-                        data : cumul_data['pp_band']
-                    }
-             ], 
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
+// TO Display Correct Date Time
+    Highcharts.setOptions({
+        global: {
+        useUTC: false
+        }
+    });
+  
+  
+    Highcharts.chart('cumulative_cases', { 
+        chart:{
+            zoomType: 'x',
+            panning: true,
+            panKey: 'shift',   
+        },
+
+        title: {   text: 'Cumulative Cases'    },
+    
+        subtitle: {text: ''},
+    
+        yAxis: {
+            title: {  text: 'Cases'  }
+        },
+    
+        xAxis: {
+                type: 'datetime',  
+        },
+    
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+    
+        plotOptions: {
+            series:{
+                marker: {
+                    enabled: false
+                },
             }
-        
-        }); //Highcharts Ends for Cumulative Cases.
+        },
+    
+        series: [
+            // Prediction Lines
+                {name: 'EP',
+                data: cumul_data['ep']
+                },
+                {name: 'MP',
+                data: cumul_data['mp']
+                },
+                {name: 'PP',
+                data: cumul_data['pp']
+                },
+                {name: 'True',
+                data: cumul_data['true']
+                }, 
+                {name : 'Prediction 1',
+                    data : cumul_data['pred']
+                }, 
+            // Prediction Bands
+                {
+                name : 'EP Band',
+                type : 'arearange',
+                data : cumul_data['ep_band']
+                },
+                {
+                name : 'MP Band',
+                type : 'arearange',
+                data : cumul_data['mp_band']
+                },
+                {
+                name : 'PP Band',
+                type : 'arearange',
+                data : cumul_data['pp_band']
+                }
+            ], 
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    
+    }); //Highcharts Ends for Cumulative Cases.
 
 });
 
@@ -116,6 +125,7 @@ $.post('daily_data.php',
                 title: {  text: 'Cases'  }
             }, 
             xAxis: {
+                useUTC: false,
                   type: 'datetime',  
             }, 
             legend: {
